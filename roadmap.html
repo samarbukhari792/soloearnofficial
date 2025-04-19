@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roadmap - SoloEarn</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Roadmap Page Specific Styles */
+        .roadmap-banner {
+            background: linear-gradient(135deg, rgba(90, 75, 255, 0.9), rgba(0, 194, 255, 0.9)),
+                        url('https://images.unsplash.com/photo-1639762681485-074b7f938ba0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 40vh;
+            margin-top: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .roadmap-banner h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .roadmap-banner p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .roadmap-content {
+            padding: 5rem 0;
+        }
+
+        .roadmap-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .roadmap-intro p {
+            color: var(--text);
+            opacity: 0.8;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Timeline Styles */
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .timeline-entry {
+            padding: 2rem 0;
+            position: relative;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .timeline-entry.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-entry:nth-child(odd) {
+            padding-right: 50%;
+            padding-left: 2rem;
+        }
+
+        .timeline-entry:nth-child(even) {
+            padding-left: 50%;
+            padding-right: 2rem;
+        }
+
+        .timeline-content {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(90, 75, 255, 0.1);
+            border: 1px solid rgba(90, 75, 255, 0.1);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(90, 75, 255, 0.15);
+        }
+
+        .timeline-date {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0 var(--border-radius) 0 20px;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .timeline-entry:nth-child(even) .timeline-date {
+            right: auto;
+            left: 0;
+            border-radius: 0 0 0 var(--border-radius);
+        }
+
+        .timeline-icon {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: var(--card-bg);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(90, 75, 255, 0.2);
+            z-index: 1;
+        }
+
+        .timeline-entry:nth-child(odd) .timeline-icon {
+            right: -25px;
+        }
+
+        .timeline-entry:nth-child(even) .timeline-icon {
+            left: -25px;
+        }
+
+        .timeline-icon i {
+            font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+            padding-right: 100px;
+        }
+
+        .timeline-content p {
+            color: var(--text);
+            opacity: 0.7;
+            line-height: 1.6;
+        }
+
+        .status-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-top: 1rem;
+        }
+
+        /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(90, 75, 255, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(90, 75, 255, 0.4);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-entry:nth-child(odd),
+            .timeline-entry:nth-child(even) {
+                padding-left: 80px;
+                padding-right: 2rem;
+            }
+
+            .timeline-entry:nth-child(odd) .timeline-icon,
+            .timeline-entry:nth-child(even) .timeline-icon {
+                left: 5px;
+                right: auto;
+            }
+
+            .timeline-entry:nth-child(even) .timeline-date {
+                left: auto;
+                right: 0;
+                border-radius: 0 var(--border-radius) 0 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .roadmap-banner h1 {
+                font-size: 2.5rem;
+            }
+
+            .timeline-content h3 {
+                font-size: 1.3rem;
+                padding-right: 0;
+            }
+
+            .timeline-date {
+                position: relative;
+                display: inline-block;
+                margin-bottom: 1rem;
+                border-radius: 20px;
+            }
+
+            .timeline-entry:nth-child(even) .timeline-date {
+                left: auto;
+                right: auto;
+                border-radius: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>SoloEarn</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="rules.html">Rules</a></li>
+                    <li><a href="roadmap.html" class="active">RoadMap</a></li>
+                    <li><a href="payment.html">Payment</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Roadmap Banner -->
+    <section class="roadmap-banner">
+        <div class="container">
+            <h1>Our Roadmap</h1>
+            <p>A journey of trust, innovation, and growth.</p>
+        </div>
+    </section>
+
+    <!-- Roadmap Content -->
+    <section class="roadmap-content">
+        <div class="container">
+            <div class="roadmap-intro">
+                <p>At SoloEarn, we're constantly evolving and improving our platform to better serve our investors. Our roadmap outlines the key milestones we've achieved and our plans for the future. We believe in transparency, and this timeline reflects our commitment to growth and innovation.</p>
+            </div>
+
+            <!-- Timeline -->
+            <div class="timeline">
+                <!-- Phase 5 -->
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Phase 5</span>
+                        <h3>Brand Expansion</h3>
+                        <p>Expanding our brand presence and establishing partnerships with industry leaders.</p>
+                        <span class="status-tag">Planned</span>
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Phase 5</span>
+                        <h3>Partnership with Fintech or AI Firms</h3>
+                        <p>Establishing strategic partnerships to enhance our technology and services.</p>
+                        <span class="status-tag">Planned</span>
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fas fa-newspaper"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Phase 5</span>
+                        <h3>Featured on Local Business News Platforms</h3>
+                        <p>Gaining recognition and coverage in local business media outlets.</p>
+                        <span class="status-tag">Planned</span>
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Phase 5</span>
+                        <h3>Achieve 1000+ Active Investors</h3>
+                        <p>Reaching a significant milestone of 1000+ active investors on our platform.</p>
+                        <span class="status-tag">Planned</span>
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Phase 5</span>
+                        <h3>Offline Investor Events / Meetups (City-wise)</h3>
+                        <p>Organizing in-person events to connect with our investor community.</p>
+                        <span class="status-tag">Planned</span>
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Phase 5</span>
+                        <h3>SoloEarn Merchandise (Digital ID, Cards, Stickers)</h3>
+                        <p>Launching branded merchandise for our community members.</p>
+                        <span class="status-tag">Planned</span>
+                    </div>
+                </div>
+
+                <!-- Phase 4 -->
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Phase 4</span>
+                        <h3>Advanced Features & Trust Building</h3>
+                        <p>Implementing advanced features to enhance user experience and build trust.</p>
+                        <span class="status-tag">Planned</span>
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Phase 4</span>
+                        <h3>Collaboration with Local Vendors or Traders</h3>
+                        <p>Establishing partnerships with local vendors to expand our ecosystem.</p>
+                        <span class="status-tag">Planned</span>
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Phase 4</span>
+                        <h3>Public API for Stats Display</h3>
+                        <p>Developing a public API for displaying investment statistics.</p>
+                        <span class="status-tag">Planned</span>
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Phase 4</span>
+                        <h3>Verification System for Investors (Optional KYC Light)</h3>
+                        <p>Implementing a lightweight verification system for enhanced security.</p>
+                        <span class="status-tag">Planned</span>
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Phase 4</span>
+                        <h3>AI Dashboard (Auto Profit Update Engine)</h3>
+                        <p>Developing an AI-powered dashboard for automatic profit updates.</p>
+                        <span class="status-tag">Planned</span>
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Phase 4</span>
+                        <h3>Mobile App Planning & Dev Start</h3>
+                        <p>Beginning the planning and development of our mobile application.</p>
+                        <span class="status-tag">Planned</span>
+                    </div>
+                </div>
+
+                <!-- Phase 3 -->
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Phase 3</span>
+                        <h3>Community & Tools Growth</h3>
+                        <p>Expanding our community features and enhancing our tools for investors.</p>
+                        <span class="status-tag">In Progress</span>
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Phase 3</span>
+                        <h3>Live Wallet Stats or Graphs (Optional/Future)</h3>
+                        <p>Implementing real-time wallet statistics and visualizations.</p>
+                        <span class="status-tag">Planned</span>
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Phase 3</span>
+                        <h3>Introduce Investor Tiers (Bronze, Silver, Gold etc.)</h3>
+                        <p>Creating a tiered system to reward loyal investors with exclusive benefits.</p>
+                        <span class="status-tag">Planned</span>
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Phase 3</span>
+                        <h3>Investor Certificates or Badges</h3>
+                        <p>Introducing digital certificates and badges for investor achievements.</p>
+                        <span class="status-tag">Planned</span>
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Phase 3</span>
+                        <h3>Add Referral Program (Invite Friends = Bonus %)</h3>
+                        <p>Launching a referral program to incentivize community growth.</p>
+                        <span class="status-tag">Planned</span>
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fab fa-telegram"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Phase 3</span>
+                        <h3>Launch Telegram Community</h3>
+                        <p>Creating a dedicated Telegram channel for community engagement.</p>
+                        <span class="status-tag">Planned</span>
+                    </div>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Phase 2</span>
+                        <h3>Website & System Expansion</h3>
+                        <p>Expanding our online presence and enhancing our platform's functionality.</p>
+                        <span class="status-tag">In Progress</span>
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fas fa-file-export"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Phase 2</span>
+                        <h3>Export/Import Feature for Data Handling</h3>
+                        <p>Developing tools for easy data management and transfer.</p>
+                        <span class="status-tag">In Development</span>
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Phase 2</span>
+                        <h3>Auto Data Tracker with Local Storage</h3>
+                        <p>Implementing automatic data tracking with local storage capabilities.</p>
+                        <span class="status-tag">In Development</span>
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Phase 2</span>
+                        <h3>Daily Profit Calculator (Coming Soon)</h3>
+                        <p>Creating a tool to calculate potential daily profits based on investment amount.</p>
+                        <span class="status-tag">Coming Soon</span>
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Phase 2</span>
+                        <h3>Investor ID Card Generator (Coming Soon)</h3>
+                        <p>Developing a tool to generate personalized investor ID cards.</p>
+                        <span class="status-tag">Coming Soon</span>
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Phase 2</span>
+                        <h3>Tools Page Framework Ready</h3>
+                        <p>Establishing the foundation for our investor tools section.</p>
+                        <span class="status-tag">Completed</span>
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Phase 2</span>
+                        <h3>Public Stats Counters on Homepage</h3>
+                        <p>Implementing real-time statistics display on our homepage.</p>
+                        <span class="status-tag">Completed</span>
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Phase 2</span>
+                        <h3>About Us, Rules, Contact, Tools Pages Created</h3>
+                        <p>Developing essential pages for our website to provide comprehensive information.</p>
+                        <span class="status-tag">Completed</span>
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Phase 2</span>
+                        <h3>Official Website (Portfolio Site) Launched</h3>
+                        <p>Launching our official website to showcase our platform and services.</p>
+                        <span class="status-tag">Completed</span>
+                    </div>
+                </div>
+
+                <!-- Phase 1 -->
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Phase 1</span>
+                        <h3>Foundation & Launch</h3>
+                        <p>Establishing the foundation of SoloEarn and launching our initial services.</p>
+                        <span class="status-tag">Completed</span>
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Phase 1</span>
+                        <h3>First 50 Investors Reached 🎉</h3>
+                        <p>Achieving our initial milestone of reaching 50 active investors.</p>
+                        <span class="status-tag">Completed</span>
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Phase 1</span>
+                        <h3>Public Investor List Dashboard Created</h3>
+                        <p>Developing a transparent dashboard to display our investor community.</p>
+                        <span class="status-tag">Completed</span>
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Phase 1</span>
+                        <h3>WhatsApp Support Channel Launched</h3>
+                        <p>Establishing a dedicated WhatsApp channel for investor support.</p>
+                        <span class="status-tag">Completed</span>
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Phase 1</span>
+                        <h3>Manual Human Payout System Setup</h3>
+                        <p>Implementing a reliable manual payout system for daily profits.</p>
+                        <span class="status-tag">Completed</span>
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Phase 1</span>
+                        <h3>Investment Model Finalized (Flexible Daily Profit)</h3>
+                        <p>Establishing our core investment model with a flexible daily profit structure.</p>
+                        <span class="status-tag">Completed</span>
+                    </div>
+                </div>
+
+                <div class="timeline-entry">
+                    <div class="timeline-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Phase 1</span>
+                        <h3>Idea & Vision Developed 💡</h3>
+                        <p>Conceiving the initial idea and vision for the SoloEarn platform.</p>
+                        <span class="status-tag">Completed</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>SoloEarn</h2>
+                    <p>Built by people, powered by trust.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>SoloEarn © 2025 – All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for timeline entries
+        document.addEventListener('DOMContentLoaded', function() {
+            const timelineEntries = document.querySelectorAll('.timeline-entry');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            timelineEntries.forEach(entry => {
+                observer.observe(entry);
+            });
+
+            // Scroll to top functionality
+            const scrollTopBtn = document.querySelector('.scroll-top');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    scrollTopBtn.classList.add('visible');
+                } else {
+                    scrollTopBtn.classList.remove('visible');
+                }
+            });
+            
+            scrollTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

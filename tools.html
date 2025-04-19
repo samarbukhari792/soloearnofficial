@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tools - SoloEarn</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Tools Page Specific Styles */
+        .tools-banner {
+            background: linear-gradient(135deg, rgba(90, 75, 255, 0.9), rgba(0, 194, 255, 0.9)),
+                        url('https://images.unsplash.com/photo-1639762681485-074b7f938ba0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 40vh;
+            margin-top: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .tools-banner h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .tools-content {
+            padding: 5rem 0;
+        }
+
+        .tools-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .tools-intro p {
+            color: var(--text);
+            opacity: 0.8;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tool-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: 0 10px 30px rgba(90, 75, 255, 0.1);
+            border: 1px solid rgba(90, 75, 255, 0.1);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(90, 75, 255, 0.15);
+        }
+
+        .tool-icon {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+        }
+
+        .tool-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .tool-card p {
+            color: var(--text);
+            opacity: 0.7;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .coming-soon {
+            padding: 5rem 0;
+            background-color: var(--background);
+            text-align: center;
+        }
+
+        .coming-soon h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .coming-soon p {
+            color: var(--text);
+            opacity: 0.8;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 992px) {
+            .tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tools-banner h1 {
+                font-size: 2.5rem;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>SoloEarn</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="rules.html">Rules & Regulations</a></li>
+                    <li><a href="tools.html" class="active">Tools</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Tools Banner -->
+    <section class="tools-banner">
+        <div class="container">
+            <h1>Investor Tools</h1>
+            <p>Powerful tools to enhance your investment experience</p>
+        </div>
+    </section>
+
+    <!-- Tools Content -->
+    <section class="tools-content">
+        <div class="container">
+            <div class="tools-intro">
+                <p>Welcome to the SoloEarn Tools Hub. Here you'll find a collection of powerful tools designed to help you manage and optimize your investments. From calculators to dashboards, we've got everything you need to make informed investment decisions.</p>
+            </div>
+            <div class="tools-grid">
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <h3>Investor ID Card Generator</h3>
+                    <p>Create and download your personalized SoloEarn investor ID card for easy verification.</p>
+                    <a href="#" class="btn">Generate Card</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>Profit Calculator</h3>
+                    <p>Calculate your potential earnings based on investment amount and duration.</p>
+                    <a href="#" class="btn">Calculate</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Public Investor Dashboard</h3>
+                    <p>View real-time statistics and performance metrics of all SoloEarn investors.</p>
+                    <a href="#" class="btn">View Dashboard</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-export"></i>
+                    </div>
+                    <h3>Export / Import Data Tool</h3>
+                    <p>Export your investment data or import historical records for analysis.</p>
+                    <a href="#" class="btn">Export Data</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-certificate"></i>
+                    </div>
+                    <h3>Digital Investment Certificate</h3>
+                    <p>Generate and download your official SoloEarn investment certificate.</p>
+                    <a href="#" class="btn">Get Certificate</a>
+                </div>
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Live Earnings Viewer</h3>
+                    <p>Track your real-time earnings and investment growth with detailed charts.</p>
+                    <a href="#" class="btn">View Earnings</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coming Soon -->
+    <section class="coming-soon">
+        <div class="container">
+            <h2>More Tools Coming Soon</h2>
+            <p>We're constantly developing new tools to enhance your investment experience. Stay tuned for more features and updates!</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>SoloEarn</h2>
+                    <p>Built by people, powered by trust.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>SoloEarn © 2025 – All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 

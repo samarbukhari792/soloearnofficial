@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rules & Regulations - SoloEarn</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Rules Page Specific Styles */
+        .rules-banner {
+            background: linear-gradient(135deg, rgba(90, 75, 255, 0.9), rgba(0, 194, 255, 0.9)),
+                        url('https://images.unsplash.com/photo-1639762681485-074b7f938ba0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 40vh;
+            margin-top: var(--header-height);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .rules-banner h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .rules-content {
+            padding: 5rem 0;
+        }
+
+        .rules-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .rules-intro p {
+            color: var(--text);
+            opacity: 0.8;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .rules-section {
+            padding: 8rem 0 5rem;
+            background-color: var(--background);
+        }
+
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .rule-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(90, 75, 255, 0.1);
+            border: 1px solid rgba(90, 75, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .rule-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(90, 75, 255, 0.15);
+        }
+
+        .rule-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .rule-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+        }
+
+        .rule-icon i {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .rule-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .rule-details {
+            margin-top: 1rem;
+        }
+
+        .rule-info {
+            margin-bottom: 1rem;
+        }
+
+        .rule-label {
+            font-size: 0.9rem;
+            color: var(--text);
+            opacity: 0.7;
+            margin-bottom: 0.3rem;
+        }
+
+        .rule-value {
+            font-size: 1rem;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .tier-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(90, 75, 255, 0.1);
+            border: 1px solid rgba(90, 75, 255, 0.1);
+            transition: var(--transition);
+            margin-bottom: 2rem;
+        }
+
+        .tier-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(90, 75, 255, 0.15);
+        }
+
+        .tier-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .tier-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+        }
+
+        .tier-icon i {
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .tier-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .tier-details {
+            margin-top: 1rem;
+        }
+
+        .tier-info {
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px dashed rgba(90, 75, 255, 0.1);
+        }
+
+        .tier-info:last-child {
+            border-bottom: none;
+        }
+
+        .tier-label {
+            font-size: 1rem;
+            color: var(--text);
+            opacity: 0.7;
+        }
+
+        .tier-value {
+            font-size: 1rem;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .highlight-value {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .additional-rules {
+            margin-top: 3rem;
+        }
+
+        .additional-rule {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+        }
+
+        .additional-rule-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .additional-rule-icon i {
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .additional-rule-content {
+            flex: 1;
+        }
+
+        .additional-rule-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0.5rem;
+        }
+
+        .additional-rule-text {
+            font-size: 1rem;
+            color: var(--text);
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+
+        .how-it-works {
+            padding: 5rem 0;
+            background-color: var(--background);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0 auto 1.5rem;
+        }
+
+        .step-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .step-card p {
+            color: var(--text);
+            opacity: 0.7;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 992px) {
+            .rules-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .rules-banner h1 {
+                font-size: 2.5rem;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>SoloEarn</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="rules.html" class="active">Rules</a></li>
+                    <li><a href="roadmap.html">RoadMap</a></li>
+                    <li><a href="payment.html">Payment</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Rules Banner -->
+    <section class="rules-banner">
+        <div class="container">
+            <h1>Rules & Regulations</h1>
+            <p>Understanding our investment system and guidelines</p>
+        </div>
+    </section>
+
+    <!-- Rules Section -->
+    <section class="rules-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>📝 Investor Tiers & Rules</h2>
+                <p>To ensure long-term sustainability and protection for both the investors and the platform, SoloEarn introduces a structured tier-based investment model</p>
+            </div>
+
+            <div class="tier-card">
+                <div class="tier-header">
+                    <div class="tier-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 class="tier-title">🔹 Tier 1: Basic Plan</h3>
+                </div>
+                <div class="tier-details">
+                    <div class="tier-info">
+                        <div class="tier-label">Investment Range</div>
+                        <div class="tier-value">500 PKR to 1000 PKR</div>
+                    </div>
+                    <div class="tier-info">
+                        <div class="tier-label">Daily Profit</div>
+                        <div class="tier-value highlight-value">3.5%</div>
+                    </div>
+                    <div class="tier-info">
+                        <div class="tier-label">Excise Duty</div>
+                        <div class="tier-value">0% on every 10 days' profit</div>
+                    </div>
+                    <div class="tier-info">
+                        <div class="tier-label">Conversion Fee</div>
+                        <div class="tier-value">5% Withdrawal Fee on every 10 days' profit</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tier-card">
+                <div class="tier-header">
+                    <div class="tier-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 class="tier-title">🔹 Tier 2: Standard Plan</h3>
+                </div>
+                <div class="tier-details">
+                    <div class="tier-info">
+                        <div class="tier-label">Investment Range</div>
+                        <div class="tier-value">1001 PKR to 50000 PKR</div>
+                    </div>
+                    <div class="tier-info">
+                        <div class="tier-label">Daily Profit</div>
+                        <div class="tier-value highlight-value">3%</div>
+                    </div>
+                    <div class="tier-info">
+                        <div class="tier-label">Excise Duty</div>
+                        <div class="tier-value">20% on every 10 days' profit</div>
+                    </div>
+                    <div class="tier-info">
+                        <div class="tier-label">Conversion Fee</div>
+                        <div class="tier-value">5% Withdrawal Fee on every 10 days' profit</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tier-card">
+                <div class="tier-header">
+                    <div class="tier-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 class="tier-title">🔹 Tier 3: Premium Plan</h3>
+                </div>
+                <div class="tier-details">
+                    <div class="tier-info">
+                        <div class="tier-label">Investment Range</div>
+                        <div class="tier-value">50001 PKR to 100000 PKR</div>
+                    </div>
+                    <div class="tier-info">
+                        <div class="tier-label">Daily Profit</div>
+                        <div class="tier-value highlight-value">2.8%</div>
+                    </div>
+                    <div class="tier-info">
+                        <div class="tier-label">Excise Duty</div>
+                        <div class="tier-value">20% on every 10 days' profit</div>
+                    </div>
+                    <div class="tier-info">
+                        <div class="tier-label">Conversion Fee</div>
+                        <div class="tier-value">5% Withdrawal Fee on every 10 days' profit</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="additional-rules">
+                <h3 class="section-header" style="margin-bottom: 2rem;">✅ Additional Rules & Highlights</h3>
+                
+                <div class="additional-rule">
+                    <div class="additional-rule-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="additional-rule-content">
+                        <h4 class="additional-rule-title">🔒 Full Balance Security</h4>
+                        <p class="additional-rule-text">Your investment principal is fully secured. We maintain strict security measures to protect your funds.</p>
+                    </div>
+                </div>
+
+                <div class="additional-rule">
+                    <div class="additional-rule-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <div class="additional-rule-content">
+                        <h4 class="additional-rule-title">🔁 Withdraw Up to 3 Times Per Month</h4>
+                        <p class="additional-rule-text">You can withdraw once every 10 days, allowing a maximum of 3 withdrawals per month. This ensures platform stability and fair profit distribution among all investors.</p>
+                    </div>
+                </div>
+
+                <div class="additional-rule">
+                    <div class="additional-rule-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="additional-rule-content">
+                        <h4 class="additional-rule-title">💹 Profit Reinvestment</h4>
+                        <p class="additional-rule-text">Reinvest your daily earnings to grow your capital and maximize long-term returns — all through ethical and transparent profit sharing.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>How SoloEarn Works</h2>
+                <p>Simple steps to start your investment journey</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>Create Account</h3>
+                    <p>Sign up for a SoloEarn account and complete the verification process.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Make Investment</h3>
+                    <p>Choose your investment amount and make your deposit securely.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>Earn Daily</h3>
+                    <p>Start earning 4% daily profit, automatically credited to your account.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>SoloEarn</h2>
+                    <p>Built by people, powered by trust.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>SoloEarn © 2025 – All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 
